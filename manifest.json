@@ -1,6 +1,12 @@
 {
-  "manifest_version": 2,
   "name": "Dark Mode",
-  "version": "1",
-  "description": "Dark Mode by voidrlm"
+  "description": "Enables night mode by creating dark themes for websites on the fly.",
+  "action": {},
+  "manifest_version": 3,
+  "author": "voidrlm",
+  "version": "0.1",
+  "permissions": ["activeTab", "scripting"],
+  "background": {
+    "service_worker": "background.js"
+  }
 }
