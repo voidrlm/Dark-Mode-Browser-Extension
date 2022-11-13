@@ -8,5 +8,8 @@
   "permissions": ["storage", "unlimitedStorage", "scripting", "activeTab"],
   "background": {
     "service_worker": "background.js"
+  },
+  "icons": {
+    "48": "icon.png"
   }
 }
