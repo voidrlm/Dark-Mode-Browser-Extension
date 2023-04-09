@@ -42,6 +42,7 @@ function setTheme(parameter) {
         'web.whatsapp.com',
         'twitch.tv',
         'reddit.com',
+        'tradingview.com',
     ];
     let current = JSON.parse(localStorage.getItem('darkModeData'));
     if (parameter === 'clicked') {
@@ -168,6 +169,13 @@ function setTheme(parameter) {
                 document.querySelectorAll('html')[0].setAttribute('class', 'theme-beta theme-light');
             } else {
                 document.querySelectorAll('html')[0].setAttribute('class', 'theme-beta theme-dark');
+            }
+        }
+        if (domain === 'tradingview.com') {
+            if (isLightTheme) {
+                document.querySelectorAll('html')[0].setAttribute('class', 'theme-light');
+            } else {
+                document.querySelectorAll('html')[0].setAttribute('class', 'theme-dark');
             }
         }
     } else if (!notRequiredDomains.includes(domain)) {
