@@ -35,6 +35,9 @@ function setTheme(parameter) {
                 document.documentElement.scrollHeight,
                 document.documentElement.offsetHeight,
             ) + 'px';
+        for (let e = 0; e < document.images.length; e++) {
+            document.images[e].style.filter = theme;
+        }
     }
 }
 function mapTheme(parameter, theme) {
