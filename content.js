@@ -38,6 +38,15 @@ function setTheme(parameter) {
         for (let e = 0; e < document.images.length; e++) {
             document.images[e].style.filter = theme;
         }
+
+        //COMMON
+        mapTheme('.btn', theme);
+        mapTheme('button', theme);
+        mapTheme('.button', theme);
+        mapTheme('video', theme);
+        mapTheme('iframe', theme);
+        mapTheme('embed', theme);
+        mapTheme('.img', theme);
     }
 }
 function mapTheme(parameter, theme) {
