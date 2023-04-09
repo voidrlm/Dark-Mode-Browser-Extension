@@ -141,6 +141,18 @@ function setTheme(parameter) {
                 window.location.reload();
             }
         }
+        if (domain === 'web.whatsapp.com') {
+            if (isLightTheme) {
+                document.querySelectorAll('body')[0].setAttribute('class', 'web light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.querySelectorAll('html')[0].setAttribute('class', 'web dark');
+                localStorage.setItem('theme', 'body');
+            }
+            if (parameter === 'clicked') {
+                window.location.reload();
+            }
+        }
     } else if (!notRequiredDomains.includes(domain)) {
         var theme = current === null || current.isDark ? 'invert(1)' : 'invert(0)';
         var dark = current !== null && current.isDark;
@@ -167,17 +179,32 @@ function setTheme(parameter) {
         mapTheme('iframe', theme);
         mapTheme('embed', theme);
         mapTheme('.img', theme);
+        //AMAZON
+        if (domain.slice(0, 6) === 'amazon') {
+            mapTheme('.a-button', theme);
+            mapTheme('.a-icon', theme);
+            mapTheme('.navLeftFooter', theme);
+            mapTheme('.action-inner', theme);
+            mapTheme('.icp-nav-flag', theme);
+            mapTheme('.nav-logo-link', theme);
+            mapTheme('.a-meter-bar a-meter-filled', theme);
+            mapTheme('.a-badge-label', theme);
+        }
+        if (domain === 'bing.com') {
+        }
     }
 }
+
 function mapTheme(parameter, theme) {
     let elements = document.querySelectorAll(parameter);
     for (let t = 0; t < elements.length; t++) {
         elements[t].style.filter = theme;
     }
 }
-function customFontColor(parameter, color) {
-    let elements = document.querySelectorAll(parameter);
-    for (let t = 0; t < elements.length; t++) {
-        elements[t].style = 'color:' + color + ' !important;';
-    }
+function customFontColor(parameter, color = 'rgb(255, 255, 255)') {
+    document.querySelectorAll(parameter).forEach((e) => (e.style.color = color));
+}
+
+function customBackgroundColor(parameter, color = 'rgb(0, 0, 0)') {
+    document.querySelectorAll(parameter).forEach((e) => (e.style.backgroundColor = color));
 }
