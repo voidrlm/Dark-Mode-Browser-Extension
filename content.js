@@ -1,6 +1,6 @@
 setTheme();
 addListen();
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function (request) {
     if (request.args === 'clicked') {
         setTheme('clicked');
     }
@@ -116,17 +116,6 @@ function setTheme(parameter) {
         }
 
         //MAPPING STARTS ---------------------------------------
-
-        //AMAZON
-        if (domain === 'amazon.com' || domain === 'amazon.in') {
-            mapTheme('.a-button', theme);
-            mapTheme('.a-icon', theme);
-            mapTheme('.navLeftFooter', theme);
-            mapTheme('.action-inner', theme);
-            mapTheme('.icp-nav-flag', theme);
-            mapTheme('.nav-logo-link', theme);
-        }
-
         //COMMON
         mapTheme('.btn', theme);
         mapTheme('button', theme);
