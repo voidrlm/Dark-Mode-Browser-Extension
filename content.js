@@ -86,6 +86,18 @@ function setTheme(parameter) {
                 localStorage.setItem('ThemeStore', JSON.stringify({ _state: { theme: 'dark' }, _version: 0 }));
             }
         }
+        if (domain === 'instagram.com') {
+            if (isLightTheme) {
+                document.querySelectorAll('html')[0].setAttribute('class', '_9dls js-focus-visible _aa4c');
+                localStorage.setItem('igt', 'light');
+            } else {
+                document.querySelectorAll('html')[0].setAttribute('class', '_9dls js-focus-visible _aa4d');
+                localStorage.setItem('igt', 'dark');
+            }
+            if (parameter === 'clicked') {
+                window.location.reload();
+            }
+        }
     } else if (!notRequiredDomains.includes(domain)) {
         var theme = current === null || current.isDark ? 'invert(1)' : 'invert(0)';
         var dark = current !== null && current.isDark;
