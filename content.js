@@ -39,6 +39,16 @@ function setTheme(parameter) {
             document.images[e].style.filter = theme;
         }
 
+        //MAPPING STARTS ---------------------------------------
+
+        //AMAZON
+        if (domain === 'amazon.com' || domain === 'amazon.in') {
+            mapTheme('.a-button', theme);
+            mapTheme('.navLeftFooter', theme);
+            mapTheme('.action-inner', theme);
+            mapTheme('.icp-nav-flag', theme);
+        }
+
         //COMMON
         mapTheme('.btn', theme);
         mapTheme('button', theme);
