@@ -6,6 +6,7 @@ chrome.runtime.onMessage.addListener(function (request) {
     }
 });
 function addListen() {
+    document.body.addEventListener('click', setTheme);
     document.body.addEventListener('keyup', setTheme);
     document.body.addEventListener('scroll', setTheme);
     document.body.addEventListener('mousemove', setTheme);
