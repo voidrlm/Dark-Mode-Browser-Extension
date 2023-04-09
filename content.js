@@ -9,21 +9,43 @@ function setTheme(parameter) {
     var domain = window.location.hostname.replace('www.', '');
     let notRequiredDomains = ['apple.com', 'bing.com', 'localhost'];
     let inbuildDarkThemeDomains = ['youtube.com', 'github.com', 'instagram.com'];
-        let current = JSON.parse(localStorage.getItem('darkModeData'));
-        if (parameter === 'clicked') {
-            if (current === null || !current) {
-                localStorage.setItem('darkModeData', JSON.stringify({}));
-                current = {};
-            }
-            if (Object.keys(current).length === 0) {
-                let data = { domain: domain, isDark: true };
-                localStorage.setItem('darkModeData', JSON.stringify(data));
+    let current = JSON.parse(localStorage.getItem('darkModeData'));
+    if (parameter === 'clicked') {
+        if (current === null || !current) {
+            localStorage.setItem('darkModeData', JSON.stringify({}));
+            current = {};
+        }
+        if (Object.keys(current).length === 0) {
+            let data = { domain: domain, isDark: true };
+            localStorage.setItem('darkModeData', JSON.stringify(data));
+        } else {
+            current.isDark = !current.isDark;
+            localStorage.setItem('darkModeData', JSON.stringify(current));
+        }
+    }
+    if (inbuildDarkThemeDomains.includes(domain)) {
+        if (domain === 'youtube.com') {
+            if (!current.isDark) {
+                document.querySelectorAll('html')[0].removeAttribute('light');
+                document.querySelectorAll('html')[0].removeAttribute('dark');
             } else {
-                current.isDark = !current.isDark;
-                localStorage.setItem('darkModeData', JSON.stringify(current));
+                document.querySelectorAll('html')[0].setAttribute('dark', true);
             }
         }
+        if (domain === 'github.com') {
+            if (!current.isDark) {
+                document.querySelectorAll('html')[0].setAttribute('data-color-mode', 'light');
+                document.querySelectorAll('html')[0].setAttribute('data-light-theme', 'light');
+            } else {
+                document.querySelectorAll('html')[0].setAttribute('data-color-mode', 'dark');
+                document.querySelectorAll('html')[0].setAttribute('data-light-theme', 'dark');
+            }
+        }
+    } else if (!notRequiredDomains.includes(domain)) {
+        console.log(current);
+
         var theme = current === null || current.isDark ? 'invert(1)' : 'invert(0)';
+        var dark = current !== null && current.isDark;
         document.documentElement.style.filter = theme;
         document.documentElement.style.backgroundColor = 'black';
         document.documentElement.style.height =
@@ -65,6 +87,8 @@ function setTheme(parameter) {
         mapTheme('iframe', theme);
         mapTheme('embed', theme);
         mapTheme('.img', theme);
+    } else {
+        console.log('Use dark theme provided by site.');
     }
 }
 function mapTheme(parameter, theme) {
