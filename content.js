@@ -85,9 +85,11 @@ function setTheme(parameter) {
         //AMAZON
         if (domain === 'amazon.com' || domain === 'amazon.in') {
             mapTheme('.a-button', theme);
+            mapTheme('.a-icon', theme);
             mapTheme('.navLeftFooter', theme);
             mapTheme('.action-inner', theme);
             mapTheme('.icp-nav-flag', theme);
+            mapTheme('.nav-logo-link', theme);
         }
 
         //COMMON
