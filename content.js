@@ -38,7 +38,7 @@ function setTheme(parameter) {
                 document.querySelectorAll('html')[0].setAttribute('data-light-theme', 'light');
             } else {
                 document.querySelectorAll('html')[0].setAttribute('data-color-mode', 'dark');
-                document.querySelectorAll('html')[0].setAttribute('data-light-theme', 'dark');
+                document.querySelectorAll('html')[0].setAttribute('data-dark-theme', 'dark');
             }
         }
         if (domain === 'stackoverflow.com') {
