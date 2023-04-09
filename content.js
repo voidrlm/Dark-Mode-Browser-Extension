@@ -160,6 +160,13 @@ function setTheme(parameter) {
                 document.querySelectorAll('html')[0].setAttribute('class', 'tw-root--theme-dark');
             }
         }
+        if (domain === 'reddit.com') {
+            if (isLightTheme) {
+                document.querySelectorAll('html')[0].setAttribute('class', 'theme-beta theme-light');
+            } else {
+                document.querySelectorAll('html')[0].setAttribute('class', 'theme-beta theme-dark');
+            }
+        }
     } else if (!notRequiredDomains.includes(domain)) {
         var theme = current === null || current.isDark ? 'invert(1)' : 'invert(0)';
         var dark = current !== null && current.isDark;
