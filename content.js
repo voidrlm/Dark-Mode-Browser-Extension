@@ -77,6 +77,15 @@ function setTheme(parameter) {
                 document.querySelectorAll('html')[0].setAttribute('class', 'dark');
             }
         }
+        if (domain === 'discord.com') {
+            if (isLightTheme) {
+                document.querySelectorAll('html')[0].setAttribute('class', 'theme-light');
+                localStorage.setItem('ThemeStore', JSON.stringify({ _state: { theme: 'light' }, _version: 0 }));
+            } else {
+                document.querySelectorAll('html')[0].setAttribute('class', 'theme-dark');
+                localStorage.setItem('ThemeStore', JSON.stringify({ _state: { theme: 'dark' }, _version: 0 }));
+            }
+        }
     } else if (!notRequiredDomains.includes(domain)) {
         var theme = current === null || current.isDark ? 'invert(1)' : 'invert(0)';
         var dark = current !== null && current.isDark;
