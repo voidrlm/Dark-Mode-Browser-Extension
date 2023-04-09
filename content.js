@@ -29,7 +29,7 @@ function setTheme(parameter) {
             localStorage.setItem('darkModeData', JSON.stringify({}));
             current = {};
         }
-        if (Object.keys(current).length === 0) {
+        if (current === null || Object.keys(current).length === 0) {
             let data = { domain: domain, isDark: true };
             localStorage.setItem('darkModeData', JSON.stringify(data));
         } else {
@@ -38,8 +38,9 @@ function setTheme(parameter) {
         }
     }
     if (inbuildDarkThemeDomains.includes(domain)) {
+        var isLightTheme = current === null || !current.isDark;
         if (domain === 'youtube.com') {
-            if (!current.isDark) {
+            if (isLightTheme) {
                 document.querySelectorAll('html')[0].removeAttribute('light');
                 document.querySelectorAll('html')[0].removeAttribute('dark');
             } else {
@@ -47,7 +48,7 @@ function setTheme(parameter) {
             }
         }
         if (domain === 'github.com') {
-            if (!current.isDark) {
+            if (isLightTheme) {
                 document.querySelectorAll('html')[0].setAttribute('data-color-mode', 'light');
                 document.querySelectorAll('html')[0].setAttribute('data-light-theme', 'light');
             } else {
@@ -56,7 +57,7 @@ function setTheme(parameter) {
             }
         }
         if (domain === 'stackoverflow.com') {
-            if (!current.isDark) {
+            if (isLightTheme) {
                 document.querySelectorAll('body')[0].setAttribute('class', 'user-page unified-theme');
             } else {
                 document.querySelectorAll('body')[0].setAttribute('class', 'user-page unified-theme theme-dark');
@@ -97,8 +98,6 @@ function setTheme(parameter) {
         mapTheme('iframe', theme);
         mapTheme('embed', theme);
         mapTheme('.img', theme);
-    } else {
-        console.log('Use dark theme provided by site.');
     }
 }
 function mapTheme(parameter, theme) {
