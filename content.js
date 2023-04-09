@@ -1,16 +1,12 @@
 setTheme();
-addListen();
 chrome.runtime.onMessage.addListener(function (request) {
     if (request.args === 'clicked') {
         setTheme('clicked');
     }
 });
-function addListen() {
-    document.body.addEventListener('click', setTheme);
-    document.body.addEventListener('keyup', setTheme);
-    document.body.addEventListener('scroll', setTheme);
-    document.body.addEventListener('mousemove', setTheme);
-}
+setInterval(function () {
+    setTheme();
+}, 200);
 
 function setTheme(parameter) {
     var domain = window.location.hostname.replace('www.', '');
