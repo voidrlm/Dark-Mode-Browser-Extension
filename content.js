@@ -13,7 +13,19 @@ function addListen() {
 
 function setTheme(parameter) {
     var domain = window.location.hostname.replace('www.', '');
-    let notRequiredDomains = ['apple.com', 'bing.com', 'localhost', 'twitter.com', 'imgur.com', 'udemy.com'];
+    console.log(domain);
+    let notRequiredDomains = [
+        'apple.com',
+        'localhost',
+        'twitter.com',
+        'imgur.com',
+        'udemy.com',
+        'linkedin.com',
+        'netflix.com',
+        'outlook.live.com',
+        'quora.com',
+        'bing.com',
+    ];
     let inbuildDarkThemeDomains = [
         'youtube.com',
         'github.com',
