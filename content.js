@@ -56,6 +56,14 @@ function setTheme(parameter) {
             mapTheme('.post-tag', theme);
             mapTheme('.answer-votes', theme);
         }
+        //GITHUB
+        if (domain === 'github.com') {
+            mapTheme('Header', theme);
+            mapTheme('.ContributionCalendar-day', theme);
+            mapTheme('.post-tag', theme);
+            mapTheme('.answer-votes', theme);
+            mapTheme('.repo-language-color', theme);
+        }
 
         //COMMON
         mapTheme('.btn', theme);
