@@ -1,17 +1,31 @@
 setTheme();
+addListen();
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.args === 'clicked') {
         setTheme('clicked');
     }
 });
+function addListen() {
+    document.body.addEventListener('keyup', setTheme);
+    document.body.addEventListener('scroll', setTheme);
+    document.body.addEventListener('mousemove', setTheme);
+}
+
 function setTheme(parameter) {
     var domain = window.location.hostname.replace('www.', '');
-    console.log(domain);
-    let notRequiredDomains = ['apple.com', 'bing.com', 'localhost'];
-    let inbuildDarkThemeDomains = ['youtube.com', 'github.com', 'instagram.com', 'stackoverflow.com'];
+    let notRequiredDomains = ['apple.com', 'bing.com', 'localhost', 'twitter.com', 'imgur.com', 'udemy.com'];
+    let inbuildDarkThemeDomains = [
+        'youtube.com',
+        'github.com',
+        'instagram.com',
+        'stackoverflow.com',
+        'developer.mozilla.org',
+        'superuser.com',
+        'discord.com',
+    ];
     let current = JSON.parse(localStorage.getItem('darkModeData'));
     if (parameter === 'clicked') {
-        if (current === null || !current) {
+        if (!current) {
             localStorage.setItem('darkModeData', JSON.stringify({}));
             current = {};
         }
