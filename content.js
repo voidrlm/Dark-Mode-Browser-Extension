@@ -122,6 +122,13 @@ function setTheme(parameter) {
                 document.querySelectorAll('html')[0].setAttribute('class', 'dark');
             }
         }
+        if (domain === 'freecodecamp.org') {
+            if (isLightTheme) {
+                document.querySelectorAll('body')[0].setAttribute('class', 'light-palette');
+            } else {
+                document.querySelectorAll('body')[0].setAttribute('class', 'dark-palette');
+            }
+        }
     } else if (!notRequiredDomains.includes(domain)) {
         var theme = current === null || current.isDark ? 'invert(1)' : 'invert(0)';
         var dark = current !== null && current.isDark;
