@@ -1,14 +1,14 @@
 setTheme();
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    console.log(request);
     if (request.args === 'clicked') {
         setTheme('clicked');
     }
 });
 function setTheme(parameter) {
     var domain = window.location.hostname.replace('www.', '');
+    console.log(domain);
     let notRequiredDomains = ['apple.com', 'bing.com', 'localhost'];
-    let inbuildDarkThemeDomains = ['youtube.com', 'github.com', 'instagram.com'];
+    let inbuildDarkThemeDomains = ['youtube.com', 'github.com', 'instagram.com', 'stackoverflow.com'];
     let current = JSON.parse(localStorage.getItem('darkModeData'));
     if (parameter === 'clicked') {
         if (current === null || !current) {
@@ -41,9 +41,14 @@ function setTheme(parameter) {
                 document.querySelectorAll('html')[0].setAttribute('data-light-theme', 'dark');
             }
         }
+        if (domain === 'stackoverflow.com') {
+            if (!current.isDark) {
+                document.querySelectorAll('body')[0].setAttribute('class', 'user-page unified-theme');
+            } else {
+                document.querySelectorAll('body')[0].setAttribute('class', 'user-page unified-theme theme-dark');
+            }
+        }
     } else if (!notRequiredDomains.includes(domain)) {
-        console.log(current);
-
         var theme = current === null || current.isDark ? 'invert(1)' : 'invert(0)';
         var dark = current !== null && current.isDark;
         document.documentElement.style.filter = theme;
