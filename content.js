@@ -1,10 +1,11 @@
-setThemeOnLoad();
+setTheme();
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     console.log(request);
     if (request.args === 'clicked') {
-        setThemeOnLoad('clicked');
+        setTheme('clicked');
     }
 });
+function setTheme(parameter) {}
 function mapTheme(parameter, theme) {
     let elements = document.querySelectorAll(parameter);
     for (let t = 0; t < elements.length; t++) {
