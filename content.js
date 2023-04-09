@@ -27,6 +27,11 @@ function setTheme(parameter) {
         'outlook.live.com',
         'quora.com',
         'bing.com',
+        'finance.yahoo.com',
+        'open.spotify.com',
+        'wetransfer.com',
+        'nbc.com',
+        'chess.com',
     ];
     let inbuildDarkThemeDomains = [
         'youtube.com',
