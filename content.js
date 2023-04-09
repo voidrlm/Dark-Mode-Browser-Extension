@@ -5,7 +5,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         setTheme('clicked');
     }
 });
-function setTheme(parameter) {}
+function setTheme(parameter) {
+    var domain = window.location.hostname.replace('www.', '');
+}
 function mapTheme(parameter, theme) {
     let elements = document.querySelectorAll(parameter);
     for (let t = 0; t < elements.length; t++) {
