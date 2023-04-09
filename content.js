@@ -81,3 +81,9 @@ function mapTheme(parameter, theme) {
         elements[t].style.filter = theme;
     }
 }
+function customFontColor(parameter, color) {
+    let elements = document.querySelectorAll(parameter);
+    for (let t = 0; t < elements.length; t++) {
+        elements[t].style = 'color:' + color + ' !important;';
+    }
+}
