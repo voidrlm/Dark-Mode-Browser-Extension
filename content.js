@@ -14,6 +14,8 @@ function addListen() {
 
 function setTheme(parameter) {
     var domain = window.location.hostname.replace('www.', '');
+    domain = domain.replace('in.', '');
+    domain = domain.replace('us.', '');
     let notRequiredDomains = [
         'apple.com',
         'localhost',
