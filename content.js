@@ -13,7 +13,6 @@ function addListen() {
 
 function setTheme(parameter) {
     var domain = window.location.hostname.replace('www.', '');
-    console.log(domain);
     let notRequiredDomains = [
         'apple.com',
         'localhost',
@@ -34,6 +33,12 @@ function setTheme(parameter) {
         'developer.mozilla.org',
         'superuser.com',
         'discord.com',
+        'chat.openai.com',
+        'freecodecamp.org',
+        'facebook.com',
+        'web.whatsapp.com',
+        'twitch.tv',
+        'reddit.com',
     ];
     let current = JSON.parse(localStorage.getItem('darkModeData'));
     if (parameter === 'clicked') {
