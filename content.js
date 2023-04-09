@@ -24,6 +24,17 @@ function setTheme(parameter) {
                 localStorage.setItem('darkModeData', JSON.stringify(current));
             }
         }
+        var theme = current === null || current.isDark ? 'invert(1)' : 'invert(0)';
+        document.documentElement.style.filter = theme;
+        document.documentElement.style.backgroundColor = 'black';
+        document.documentElement.style.height =
+            Math.max(
+                document.body.scrollHeight,
+                document.body.offsetHeight,
+                document.documentElement.clientHeight,
+                document.documentElement.scrollHeight,
+                document.documentElement.offsetHeight,
+            ) + 'px';
     }
 }
 function mapTheme(parameter, theme) {
