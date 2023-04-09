@@ -207,7 +207,9 @@ function setTheme(parameter) {
             mapTheme('.a-meter-bar a-meter-filled', theme);
             mapTheme('.a-badge-label', theme);
         }
-        if (domain === 'bing.com') {
+        if (domain === 'moneycontrol.com') {
+            mapTheme('.rdtxt', theme);
+            mapTheme('.grntxt', theme);
         }
     }
 }
