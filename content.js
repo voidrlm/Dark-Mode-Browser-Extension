@@ -7,10 +7,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 });
 function setTheme(parameter) {
     var domain = window.location.hostname.replace('www.', '');
-    let notRequiredDomains = ['apple.com', 'youtube.com', 'instagram.com', 'bing.com', 'localhost'];
-    if (!notRequiredDomains.includes(domain)) {
+    let notRequiredDomains = ['apple.com', 'bing.com', 'localhost'];
+    let inbuildDarkThemeDomains = ['youtube.com', 'github.com', 'instagram.com'];
         let current = JSON.parse(localStorage.getItem('darkModeData'));
-        console.log(current);
         if (parameter === 'clicked') {
             if (current === null || !current) {
                 localStorage.setItem('darkModeData', JSON.stringify({}));
