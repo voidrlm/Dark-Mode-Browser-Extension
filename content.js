@@ -7,6 +7,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 });
 function setTheme(parameter) {
     var domain = window.location.hostname.replace('www.', '');
+    let notRequiredDomains = ['apple.com', 'youtube.com', 'instagram.com', 'bing.com', 'localhost'];
+    if (!notRequiredDomains.includes(domain)) {
+    }
 }
 function mapTheme(parameter, theme) {
     let elements = document.querySelectorAll(parameter);
