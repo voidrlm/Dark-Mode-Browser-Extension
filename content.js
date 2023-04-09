@@ -4,9 +4,12 @@ chrome.runtime.onMessage.addListener(function (request) {
         setTheme('clicked');
     }
 });
-setInterval(function () {
-    setTheme();
-}, 200);
+var presentDomain = JSON.parse(localStorage.getItem('darkModeData'));
+if (presentDomain !== null || presentDomain.isDark) {
+    setInterval(function () {
+        setTheme();
+    }, 100);
+}
 
 function setTheme(parameter) {
     var domain = window.location.hostname.replace('www.', '');
@@ -45,7 +48,7 @@ function setTheme(parameter) {
         'reddit.com',
         'tradingview.com',
     ];
-    let current = JSON.parse(localStorage.getItem('darkModeData'));
+    var current = JSON.parse(localStorage.getItem('darkModeData'));
     if (parameter === 'clicked') {
         if (!current) {
             localStorage.setItem('darkModeData', JSON.stringify({}));
