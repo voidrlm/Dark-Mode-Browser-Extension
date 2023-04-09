@@ -115,6 +115,13 @@ function setTheme(parameter) {
                 window.location.reload();
             }
         }
+        if (domain === 'chat.openai.com') {
+            if (isLightTheme) {
+                document.querySelectorAll('html')[0].setAttribute('class', 'light');
+            } else {
+                document.querySelectorAll('html')[0].setAttribute('class', 'dark');
+            }
+        }
     } else if (!notRequiredDomains.includes(domain)) {
         var theme = current === null || current.isDark ? 'invert(1)' : 'invert(0)';
         var dark = current !== null && current.isDark;
