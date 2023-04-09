@@ -129,6 +129,18 @@ function setTheme(parameter) {
                 document.querySelectorAll('body')[0].setAttribute('class', 'dark-palette');
             }
         }
+        if (domain === 'facebook.com') {
+            if (isLightTheme) {
+                document.querySelectorAll('html')[0].setAttribute('class', '_9dls __fb-light-mode');
+                localStorage.setItem('igt', 'light');
+            } else {
+                document.querySelectorAll('html')[0].setAttribute('class', '_9dls __fb-dark-mode');
+                localStorage.setItem('igt', 'dark');
+            }
+            if (parameter === 'clicked') {
+                window.location.reload();
+            }
+        }
     } else if (!notRequiredDomains.includes(domain)) {
         var theme = current === null || current.isDark ? 'invert(1)' : 'invert(0)';
         var dark = current !== null && current.isDark;
