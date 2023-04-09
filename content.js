@@ -63,6 +63,13 @@ function setTheme(parameter) {
                 document.querySelectorAll('body')[0].setAttribute('class', 'user-page unified-theme theme-dark');
             }
         }
+        if (domain === 'superuser.com') {
+            if (isLightTheme) {
+                document.querySelectorAll('body')[0].setAttribute('class', 'question-page unified-theme');
+            } else {
+                document.querySelectorAll('body')[0].setAttribute('class', 'question-page unified-theme theme-dark');
+            }
+        }
     } else if (!notRequiredDomains.includes(domain)) {
         var theme = current === null || current.isDark ? 'invert(1)' : 'invert(0)';
         var dark = current !== null && current.isDark;
