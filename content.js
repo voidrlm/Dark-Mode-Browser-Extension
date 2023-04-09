@@ -70,15 +70,6 @@ function setTheme(parameter) {
             mapTheme('.icp-nav-flag', theme);
         }
 
-        //STACKOVERFLOW
-        if (domain === 'stackoverflow.com') {
-            mapTheme('.s-btn', theme);
-            mapTheme('.comment-user', theme);
-            mapTheme('.post-tag', theme);
-            mapTheme('.answer-votes', theme);
-            mapTheme('.s-badge', theme);
-        }
-
         //COMMON
         mapTheme('.btn', theme);
         mapTheme('button', theme);
