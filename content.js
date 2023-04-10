@@ -31,6 +31,7 @@ function setTheme(parameter) {
         'wetransfer.com',
         'nbc.com',
         'chess.com',
+        'genius.com',
     ];
     let inbuildDarkThemeDomains = [
         'youtube.com',
