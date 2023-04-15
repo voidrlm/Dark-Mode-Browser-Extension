@@ -241,3 +241,8 @@ function customFontColor(parameter, color = 'rgb(255, 255, 255)') {
 function customBackgroundColor(parameter, color = 'rgb(0, 0, 0)') {
     document.querySelectorAll(parameter).forEach((e) => (e.style.backgroundColor = color));
 }
+
+function setValueInLocalStorage(domain, value) {
+    let data = { domain: domain, isDark: value };
+    localStorage.setItem('darkModeData', JSON.stringify(data));
+}
