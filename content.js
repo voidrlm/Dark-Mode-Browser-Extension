@@ -49,6 +49,7 @@ function setTheme(parameter) {
         'twitch.tv',
         'reddit.com',
         'tradingview.com',
+        'w3schools.com',
     ];
     var current = JSON.parse(localStorage.getItem('darkModeData'));
     if (parameter === 'clicked') {
@@ -66,6 +67,24 @@ function setTheme(parameter) {
     }
     if (inbuildDarkThemeDomains.includes(domain)) {
         var isLightTheme = current === null || !current.isDark;
+        setValueInLocalStorage(
+            domain,
+            (inbuildDarkThemeDomains.includes(domain) && current === null) ||
+                (inbuildDarkThemeDomains.includes(domain) && current !== null && current.isDark)
+                ? true
+                : false,
+        );
+        if (domain === 'w3schools.com') {
+            if (isLightTheme) {
+                document.querySelectorAll('body')[0].setAttribute('class', ' ');
+                localStorage.setItem('preferredmode', 'light');
+                localStorage.setItem('preferredpagemode', 'light');
+            } else {
+                document.querySelectorAll('body')[0].setAttribute('class', '  darktheme darkpagetheme');
+                localStorage.setItem('preferredmode', 'dark');
+                localStorage.setItem('preferredpagemode', 'dark');
+            }
+        }
         if (domain === 'youtube.com') {
             if (isLightTheme) {
                 document.querySelectorAll('html')[0].removeAttribute('light');
