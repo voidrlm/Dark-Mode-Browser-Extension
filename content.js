@@ -15,6 +15,7 @@ function setTheme(parameter) {
     var domain = window.location.hostname.replace('www.', '');
     domain = domain.replace('in.', '');
     domain = domain.replace('us.', '');
+    domain = domain.replace('eu.', '');
     let notRequiredDomains = [
         'apple.com',
         'localhost',
