@@ -119,8 +119,10 @@ function setTheme(parameter) {
         if (domain === 'developer.mozilla.org') {
             if (isLightTheme) {
                 document.querySelectorAll('html')[0].setAttribute('class', 'light');
+                localStorage.setItem('theme', 'light');
             } else {
                 document.querySelectorAll('html')[0].setAttribute('class', 'dark');
+                localStorage.setItem('theme', 'dark');
             }
         }
         if (domain === 'discord.com') {
