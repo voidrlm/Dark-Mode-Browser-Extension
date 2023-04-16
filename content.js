@@ -34,6 +34,8 @@ function setTheme(parameter) {
         'nbc.com',
         'chess.com',
         'genius.com',
+        'wazirx.com',
+        'opensea.io',
     ];
     let inbuildDarkThemeDomains = [
         'youtube.com',
