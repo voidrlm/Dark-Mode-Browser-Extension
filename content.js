@@ -252,7 +252,16 @@ function setTheme(parameter) {
         if (domain === 'moneycontrol.com') {
             mapTheme('.rdtxt', theme);
             mapTheme('.grntxt', theme);
+            mapTheme('.c', theme);
+            mapTheme('.d', theme);
+            mapTheme('.advBar', theme);
+            mapTheme('.changea', theme);
+            mapTheme('.red', theme);
+            mapTheme('.green', theme);
         }
+    } else {
+        setInvokerValue(false);
+        console.log(`%c${'DARK MODE - IGNORED'}`, 'background: #FFFF00; color: #000000');
     }
 }
 
