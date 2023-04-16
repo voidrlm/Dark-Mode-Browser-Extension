@@ -8,7 +8,7 @@ var darkModeInvoker = JSON.parse(localStorage.getItem('darkModeService')) === tr
 var newDomain = JSON.parse(localStorage.getItem('darkModeService')) === null;
 
 if (darkModeInvoker || newDomain) {
-    console.log(`%c${'DARK MODE SERVICE RUNNING...'}`, 'background: #FFFF00; color: #000000');
+    console.log(`%c${getDomain() + ': DARK MODE SERVICE RUNNING...'}`, 'background: #FFFF00; color: #000000');
     setInterval(function () {
         setTheme();
     }, 100);
@@ -17,10 +17,7 @@ if (darkModeInvoker || newDomain) {
 function setTheme(parameter) {
     var darkModeInvoker = JSON.parse(localStorage.getItem('darkModeService')) === true;
     var newDomain = JSON.parse(localStorage.getItem('darkModeService')) === null;
-    var domain = window.location.hostname.replace('www.', '');
-    domain = domain.replace('in.', '');
-    domain = domain.replace('us.', '');
-    domain = domain.replace('eu.', '');
+    var domain = getDomain();
     let notRequiredDomains = [
         'apple.com',
         'localhost',
@@ -281,4 +278,11 @@ function customBackgroundColor(parameter, color = 'rgb(0, 0, 0)') {
 
 function setInvokerValue(value) {
     localStorage.setItem('darkModeService', value);
+}
+function getDomain() {
+    let domain = window.location.hostname.replace('www.', '');
+    domain = domain.replace('in.', '');
+    domain = domain.replace('us.', '');
+    domain = domain.replace('eu.', '');
+    return domain;
 }
