@@ -4,15 +4,19 @@ chrome.runtime.onMessage.addListener(function (request) {
         setTheme('clicked');
     }
 });
-var presentDomain = JSON.parse(localStorage.getItem('darkModeData'));
-if (presentDomain !== null || presentDomain.isDark) {
-    console.log(`%c${'Dark mode service running...'}`, 'background: #FFFF00; color: #000000');
+var darkModeInvoker = JSON.parse(localStorage.getItem('darkModeService')) === true;
+var newDomain = JSON.parse(localStorage.getItem('darkModeService')) === null;
+
+if (darkModeInvoker || newDomain) {
+    console.log(`%c${'DARK MODE SERVICE RUNNING...'}`, 'background: #FFFF00; color: #000000');
     setInterval(function () {
         setTheme();
     }, 100);
 }
 
 function setTheme(parameter) {
+    var darkModeInvoker = JSON.parse(localStorage.getItem('darkModeService')) === true;
+    var newDomain = JSON.parse(localStorage.getItem('darkModeService')) === null;
     var domain = window.location.hostname.replace('www.', '');
     domain = domain.replace('in.', '');
     domain = domain.replace('us.', '');
@@ -55,29 +59,20 @@ function setTheme(parameter) {
         'w3schools.com',
         'kite.zerodha.com',
     ];
-    var current = JSON.parse(localStorage.getItem('darkModeData'));
     if (parameter === 'clicked') {
-        if (!current) {
-            localStorage.setItem('darkModeData', JSON.stringify({}));
-            current = {};
-        }
-        if (current === null || Object.keys(current).length === 0) {
-            let data = { domain: domain, isDark: true };
-            localStorage.setItem('darkModeData', JSON.stringify(data));
+        if (newDomain) {
+            localStorage.setItem('darkModeService', false);
         } else {
-            current.isDark = !current.isDark;
-            localStorage.setItem('darkModeData', JSON.stringify(current));
+            darkModeInvoker = !darkModeInvoker;
+            localStorage.setItem('darkModeService', darkModeInvoker);
         }
     }
     if (inbuildDarkThemeDomains.includes(domain)) {
-        var isLightTheme = current === null || !current.isDark;
-        setValueInLocalStorage(
-            domain,
-            (inbuildDarkThemeDomains.includes(domain) && current === null) ||
-                (inbuildDarkThemeDomains.includes(domain) && current !== null && current.isDark)
-                ? true
-                : false,
-        );
+        var isLightTheme = !darkModeInvoker;
+        if (newDomain) {
+            setInvokerValue(true);
+        }
+
         if (domain === 'w3schools.com') {
             if (isLightTheme) {
                 document.querySelectorAll('body')[0].setAttribute('class', ' ');
@@ -219,7 +214,7 @@ function setTheme(parameter) {
             }
         }
     } else if (!notRequiredDomains.includes(domain)) {
-        var theme = current === null || current.isDark ? 'invert(1)' : 'invert(0)';
+        var theme = newDomain || darkModeInvoker ? 'invert(1)' : 'invert(0)';
         document.documentElement.style.filter = theme;
         document.documentElement.style.backgroundColor = 'white';
         document.documentElement.style.height =
@@ -275,7 +270,6 @@ function customBackgroundColor(parameter, color = 'rgb(0, 0, 0)') {
     document.querySelectorAll(parameter).forEach((e) => (e.style.backgroundColor = color));
 }
 
-function setValueInLocalStorage(domain, value) {
-    let data = { domain: domain, isDark: value };
-    localStorage.setItem('darkModeData', JSON.stringify(data));
+function setInvokerValue(value) {
+    localStorage.setItem('darkModeService', value);
 }
