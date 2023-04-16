@@ -296,8 +296,8 @@ function getDomain() {
     return domain;
 }
 
-function themeMapper(classList, theme) {
-    for (let i = 0; i < classList.length; i++) {
-        mapTheme(classList[i], theme);
+function themeMapper(elementList, theme) {
+    for (let i = 0; i < elementList.length; i++) {
+        mapTheme(elementList[i], theme);
     }
 }
