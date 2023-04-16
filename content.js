@@ -207,9 +207,8 @@ function setTheme(parameter) {
         }
     } else if (!notRequiredDomains.includes(domain)) {
         var theme = current === null || current.isDark ? 'invert(1)' : 'invert(0)';
-        var dark = current !== null && current.isDark;
         document.documentElement.style.filter = theme;
-        document.documentElement.style.backgroundColor = 'black';
+        document.documentElement.style.backgroundColor = 'white';
         document.documentElement.style.height =
             Math.max(
                 document.body.scrollHeight,
