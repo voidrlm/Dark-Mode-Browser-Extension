@@ -6,6 +6,7 @@ chrome.runtime.onMessage.addListener(function (request) {
 });
 var presentDomain = JSON.parse(localStorage.getItem('darkModeData'));
 if (presentDomain !== null || presentDomain.isDark) {
+    console.log(`%c${'Dark mode service running...'}`, 'background: #FFFF00; color: #000000');
     setInterval(function () {
         setTheme();
     }, 100);
