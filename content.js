@@ -284,13 +284,6 @@ function mapTheme(parameter, theme) {
         elements[t].style.filter = theme;
     }
 }
-function customFontColor(parameter, color = 'rgb(255, 255, 255)') {
-    document.querySelectorAll(parameter).forEach((e) => (e.style.color = color));
-}
-
-function customBackgroundColor(parameter, color = 'rgb(0, 0, 0)') {
-    document.querySelectorAll(parameter).forEach((e) => (e.style.backgroundColor = color));
-}
 
 function setInvokerValue(value) {
     localStorage.setItem('darkModeService', value);
