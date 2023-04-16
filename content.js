@@ -250,7 +250,24 @@ function setTheme(parameter) {
             themeMapper(classList, theme);
         }
         if (domain === 'nseindia.com') {
-            classList = ['lowVal'];
+            classList = [
+                '.lowVal',
+                '.highVal',
+                '.greenTxt',
+                '.redTxt',
+                '.arrowIndicator',
+                '.arrow',
+                '#advances',
+                '#declines',
+                '.highcharts-point',
+                '.highcharts-color-1',
+                '.multi_arrows_up',
+                '.multi_arrows_down',
+                '#livepreopenadvances',
+                '#liveMrkStockAdv',
+                '#livepreopendeclines',
+                '#liveMrkStockDec',
+            ];
             themeMapper(classList, theme);
         }
     } else {
