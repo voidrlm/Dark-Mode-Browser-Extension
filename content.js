@@ -31,6 +31,7 @@ function setTheme(parameter) {
         'bing.com',
         'finance.yahoo.com',
         'open.spotify.com',
+        'spotify.com',
         'wetransfer.com',
         'nbc.com',
         'chess.com',
