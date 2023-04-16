@@ -11,7 +11,7 @@ if (darkModeInvoker || newDomain) {
     console.log(`%c${getDomain() + ': DARK MODE SERVICE RUNNING...'}`, 'background: #FFFF00; color: #000000');
     setInterval(function () {
         setTheme();
-    }, 100);
+    }, 500);
 }
 
 function setTheme(parameter) {
