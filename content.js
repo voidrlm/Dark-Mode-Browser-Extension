@@ -37,6 +37,8 @@ function setTheme(parameter) {
         'genius.com',
         'wazirx.com',
         'opensea.io',
+        'nasdaq.com',
+        'investing.com',
     ];
     let inbuildDarkThemeDomains = [
         'youtube.com',
