@@ -51,6 +51,7 @@ function setTheme(parameter) {
         'reddit.com',
         'tradingview.com',
         'w3schools.com',
+        'kite.zerodha.com',
     ];
     var current = JSON.parse(localStorage.getItem('darkModeData'));
     if (parameter === 'clicked') {
@@ -84,6 +85,15 @@ function setTheme(parameter) {
                 document.querySelectorAll('body')[0].setAttribute('class', '  darktheme darkpagetheme');
                 localStorage.setItem('preferredmode', 'dark');
                 localStorage.setItem('preferredpagemode', 'dark');
+            }
+        }
+        if (domain === 'kite.zerodha.com') {
+            if (isLightTheme) {
+                document.querySelectorAll('html')[0].setAttribute('data-theme', 'light');
+                localStorage.setItem('__storejs_kite_theme', JSON.stringify('light'));
+            } else {
+                document.querySelectorAll('html')[0].setAttribute('data-theme', 'dark');
+                localStorage.setItem('__storejs_kite_theme', JSON.stringify('dark'));
             }
         }
         if (domain === 'youtube.com') {
