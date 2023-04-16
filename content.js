@@ -230,29 +230,30 @@ function setTheme(parameter) {
 
         //MAPPING STARTS ---------------------------------------
         //COMMON
-        let classList = ['.btn', 'button', '.button', 'video', 'iframe', 'embed', '.img'];
-        themeMapper(classList);
-
+        let elementList = [];
+        elementList = ['img', 'video', 'iframe', 'embed', '.img'];
+        themeMapper(elementList, theme);
         //AMAZON
         if (domain.slice(0, 6) === 'amazon') {
-            classList = [
+            elementList = [
                 '.a-button',
                 '.a-icon',
                 '.navLeftFooter',
                 '.action-inner',
                 '.a-badge-label',
-                '.a-meter-bar a-meter-filled',
+                '.a-meter-bar',
                 '.nav-logo-link',
                 '.icp-nav-flag',
+                '.cr-thumbnail-preview-tile',
             ];
-            themeMapper(classList, theme);
+            themeMapper(elementList, theme);
         }
         if (domain === 'moneycontrol.com') {
-            classList = ['.green', '.red', '.changea', '.advBar', '.d', '.c', '.grntxt', '.rdtxt'];
-            themeMapper(classList, theme);
+            elementList = ['.green', '.red', '.changea', '.advBar', '.d', '.c', '.grntxt', '.rdtxt'];
+            themeMapper(elementList, theme);
         }
         if (domain === 'nseindia.com') {
-            classList = [
+            elementList = [
                 '.lowVal',
                 '.highVal',
                 '.greenTxt',
@@ -270,7 +271,44 @@ function setTheme(parameter) {
                 '#livepreopendeclines',
                 '#liveMrkStockDec',
             ];
-            themeMapper(classList, theme);
+            themeMapper(elementList, theme);
+        }
+        if (domain === 'marketwatch.com') {
+            elementList = ['bg-quote'];
+            themeMapper(elementList, theme);
+        }
+        if (domain === 'bseindia.com') {
+            elementList = ['.homegrapharea', '.ng-binding'];
+            themeMapper(elementList, theme);
+        }
+        if (domain === 'ticker.finology.in') {
+            elementList = ['.text-danger', '.text-success', '.gainloss', '.text-green', '.text-red'];
+            themeMapper(elementList, theme);
+        }
+        if (domain === 'alibaba.com') {
+            elementList = ['.service-copy-mask', '.slider-img-wrapper'];
+            themeMapper(elementList, theme);
+        }
+        if (domain === 'snapdeal.com') {
+            elementList = ['.banner-area', '.white-overlay', '.filled-stars'];
+            themeMapper(elementList, theme);
+        }
+        if (domain === 'indiamart.com') {
+            elementList = ['.product-banner', '.lazy'];
+            themeMapper(elementList, theme);
+        }
+        if (domain.slice(0, 4) === 'ebay') {
+            console.log(12);
+            elementList = ['.ux-call-to-action', '.hl-full-bleed-banner__image-container'];
+            themeMapper(elementList, theme);
+        }
+        if (domain === 'etsy.com') {
+            elementList = ['.secondary-grid-featured-listing', '.anchored-listing-image'];
+            themeMapper(elementList, theme);
+        }
+        if (domain === 'alibaba.com') {
+            elementList = ['.service-copy-mask'];
+            themeMapper(elementList, theme);
         }
     } else {
         setInvokerValue(false);
