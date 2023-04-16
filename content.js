@@ -228,33 +228,30 @@ function setTheme(parameter) {
 
         //MAPPING STARTS ---------------------------------------
         //COMMON
-        mapTheme('.btn', theme);
-        mapTheme('button', theme);
-        mapTheme('.button', theme);
-        mapTheme('video', theme);
-        mapTheme('iframe', theme);
-        mapTheme('embed', theme);
-        mapTheme('.img', theme);
+        let classList = ['.btn', 'button', '.button', 'video', 'iframe', 'embed', '.img'];
+        themeMapper(classList);
+
         //AMAZON
         if (domain.slice(0, 6) === 'amazon') {
-            mapTheme('.a-button', theme);
-            mapTheme('.a-icon', theme);
-            mapTheme('.navLeftFooter', theme);
-            mapTheme('.action-inner', theme);
-            mapTheme('.icp-nav-flag', theme);
-            mapTheme('.nav-logo-link', theme);
-            mapTheme('.a-meter-bar a-meter-filled', theme);
-            mapTheme('.a-badge-label', theme);
+            classList = [
+                '.a-button',
+                '.a-icon',
+                '.navLeftFooter',
+                '.action-inner',
+                '.a-badge-label',
+                '.a-meter-bar a-meter-filled',
+                '.nav-logo-link',
+                '.icp-nav-flag',
+            ];
+            themeMapper(classList, theme);
         }
         if (domain === 'moneycontrol.com') {
-            mapTheme('.rdtxt', theme);
-            mapTheme('.grntxt', theme);
-            mapTheme('.c', theme);
-            mapTheme('.d', theme);
-            mapTheme('.advBar', theme);
-            mapTheme('.changea', theme);
-            mapTheme('.red', theme);
-            mapTheme('.green', theme);
+            classList = ['.green', '.red', '.changea', '.advBar', '.d', '.c', '.grntxt', '.rdtxt'];
+            themeMapper(classList, theme);
+        }
+        if (domain === 'nseindia.com') {
+            classList = ['lowVal'];
+            themeMapper(classList, theme);
         }
     } else {
         setInvokerValue(false);
@@ -285,4 +282,10 @@ function getDomain() {
     domain = domain.replace('us.', '');
     domain = domain.replace('eu.', '');
     return domain;
+}
+
+function themeMapper(classList, theme) {
+    for (let i = 0; i < classList.length; i++) {
+        mapTheme(classList[i], theme);
+    }
 }
