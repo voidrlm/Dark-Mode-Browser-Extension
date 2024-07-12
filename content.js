@@ -23,7 +23,6 @@ function setTheme(parameter) {
 
     var theme = darkMode ? 'invert(1)' : 'invert(0)';
     document.documentElement.style.filter = theme;
-    document.documentElement.style.backgroundColor = 'white';
     if (document.body) {
         updateHeight();
         updateImages(theme);
