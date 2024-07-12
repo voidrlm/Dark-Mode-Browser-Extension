@@ -28,10 +28,10 @@ function setTheme(parameter) {
         updateHeight();
         updateImages(theme);
     }
-
-    let elementList = [];
-    elementList = ['img', 'video', 'iframe', 'embed'];
-    themeMapper(elementList, theme);
+    let elementList = ['img', 'video', 'iframe', 'embed', 'fa', 'responsive-player'];
+    let prefixedElementList = elementList.map((element) => `.${element}`);
+    let combinedList = [...elementList, ...prefixedElementList];
+    themeMapper(combinedList, theme);
 }
 function runService(action) {
     if (action == 'start') {
