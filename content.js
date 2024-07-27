@@ -1,84 +1,89 @@
 setTheme();
 chrome.runtime.onMessage.addListener(function (request) {
-    if (request.args === 'clicked') {
-        setTheme('clicked');
-    }
+  if (request.args === "clicked") {
+    setTheme("clicked");
+  }
 });
 var intervalId;
-var isDarkModeOn = JSON.parse(localStorage.getItem('darkModeService')) === true;
+var isDarkModeOn = JSON.parse(localStorage.getItem("darkModeService")) === true;
 if (isDarkModeOn) {
-    runService('start');
+  runService("start");
 } else {
-    runService('stop');
+  runService("stop");
 }
 function setTheme(parameter) {
-    var darkMode = JSON.parse(localStorage.getItem('darkModeService'));
-    var newDomain = JSON.parse(localStorage.getItem('darkModeService')) === null;
-    if (parameter === 'clicked') {
-        darkMode = newDomain ? true : !darkMode;
-        localStorage.setItem('darkModeService', darkMode);
-        if (darkMode) runService('start');
-        else runService('stop');
-    }
+  var darkMode = JSON.parse(localStorage.getItem("darkModeService"));
+  var newDomain = JSON.parse(localStorage.getItem("darkModeService")) === null;
+  if (parameter === "clicked") {
+    darkMode = newDomain ? true : !darkMode;
+    localStorage.setItem("darkModeService", darkMode);
+    if (darkMode) runService("start");
+    else runService("stop");
+  }
 
-    var theme = darkMode ? 'invert(1)' : 'invert(0)';
-    document.documentElement.style.filter = theme;
+  if (darkMode) {
     if (document.body) {
-        updateHeight();
-        updateImages(theme);
+      // Apply inversion filter to the entire page
+      const darkThemeStyles = `
+  body {
+    filter: invert(1) hue-rotate(180deg);
+    background-color: #121212; 
+  }
+  img, video, iframe, embed, .fa, .responsive-player {
+    filter: invert(1) hue-rotate(180deg); /* Restore original colors for specific elements */
+  }
+`;
+      document.addEventListener(
+        "webkitfullscreenchange",
+        handleFullscreenChange
+      );
+      let styleSheet = document.getElementById("dark-theme-styles");
+      if (!styleSheet) {
+        styleSheet = document.createElement("style");
+        styleSheet.id = "dark-theme-styles";
+        styleSheet.type = "text/css";
+        document.head.appendChild(styleSheet);
+      }
+      styleSheet.innerText = darkThemeStyles;
     }
-    let elementList = ['img', 'video', 'iframe', 'embed', 'fa', 'responsive-player'];
-    let prefixedElementList = elementList.map((element) => `.${element}`);
-    let combinedList = [...elementList, ...prefixedElementList];
-    themeMapper(combinedList, theme);
+  } else {
+    const styleSheet = document.getElementById("dark-theme-styles");
+    if (styleSheet) {
+      styleSheet.remove();
+      document.removeEventListener(
+        "webkitfullscreenchange",
+        handleFullscreenChange
+      );
+    }
+  }
 }
 function runService(action) {
-    if (action == 'start') {
-        intervalId = setInterval(function () {
-            setTheme();
-        }, 100);
-    } else {
-        clearInterval(intervalId);
-    }
-}
-function updateHeight() {
-    let newHeight = Math.max(
-        document.body.scrollHeight,
-        document.body.offsetHeight,
-        document.documentElement.clientHeight,
-        document.documentElement.scrollHeight,
-        document.documentElement.offsetHeight,
-    );
-    if (typeof updateHeight.prevHeight === 'undefined') {
-        updateHeight.prevHeight = newHeight;
-    }
-    if (newHeight != updateHeight.prevHeight) {
-        document.documentElement.style.height = newHeight + 'px';
-        updateHeight.prevHeight = newHeight;
-    }
+  if (action == "start") {
+    intervalId = setInterval(function () {
+      setTheme();
+    }, 100);
+  } else {
+    clearInterval(intervalId);
+  }
 }
 
-function updateImages(theme) {
-    let imagesCount = document.images.length;
-    if (typeof updateImages.prevCount === 'undefined') {
-        updateImages.prevCount = imagesCount;
-    }
-    if (imagesCount != updateImages.prevCount) {
-        for (let e = 0; e < document.images.length; e++) {
-            document.images[e].style.filter = theme;
-        }
-        updateImages.prevCount = imagesCount;
-    }
-}
-function themeMapper(elementList, theme) {
-    for (let i = 0; i < elementList.length; i++) {
-        mapTheme(elementList[i], theme);
-    }
-}
+// Function to handle fullscreen changes
+const handleFullscreenChange = () => {
+  const isFullscreen =
+    document.fullscreenElement ||
+    document.webkitFullscreenElement ||
+    document.mozFullScreenElement ||
+    document.msFullscreenElement;
 
-function mapTheme(parameter, theme) {
-    let elements = document.querySelectorAll(parameter);
-    for (let t = 0; t < elements.length; t++) {
-        elements[t].style.filter = theme;
-    }
-}
+  if (isFullscreen) {
+    console.log(1);
+    document.querySelectorAll("video, iframe").forEach((el) => {
+      el.style.filter = "none"; // Ensure correct styling for fullscreen elements
+    });
+  } else {
+    console.log(0);
+    document.querySelectorAll("video, iframe").forEach((el) => {
+      el.style.filter = "invert(1) hue-rotate(180deg)"; // Ensure correct styling for fullscreen elements
+    });
+  }
+};
