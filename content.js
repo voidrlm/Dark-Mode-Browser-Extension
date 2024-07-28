@@ -29,7 +29,7 @@ function setTheme(parameter) {
     filter: invert(1) hue-rotate(180deg);
     background-color: #121212; 
   }
-  img, video, iframe, embed, .fa, .responsive-player {
+  img, video, iframe, embed, .fa, .responsive-player, #navbar-main , #navFooter,.colordivbig,.colordvaline,.colordivb,.colordiv,.preview ,path,.color,.hero-image,.lazyloaded,.footer-navigation,.site-footer {
     filter: invert(1) hue-rotate(180deg); /* Restore original colors for specific elements */
   }
 `;
