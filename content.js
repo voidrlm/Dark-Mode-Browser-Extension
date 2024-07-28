@@ -29,7 +29,9 @@ function setTheme(parameter) {
     filter: invert(1) hue-rotate(180deg);
     background-color: #121212; 
   }
-  img, video, iframe, embed, .fa, .responsive-player, #navbar-main , #navFooter,.colordivbig,.colordvaline,.colordivb,.colordiv,.preview ,path,.color,.hero-image,.lazyloaded,.footer-navigation,.site-footer {
+  img, video, iframe, embed, .fa, .responsive-player, #navbar-main , #navFooter,.colordivbig,.colordvaline,.colordivb,
+  .colordiv,.preview ,path,.color,.hero-image,#document-container,.lazyloaded,.footer-navigation,.site-footer,.imgHolder,
+.module-content,figure {
     filter: invert(1) hue-rotate(180deg); /* Restore original colors for specific elements */
   }
 `;
@@ -42,8 +44,9 @@ function setTheme(parameter) {
         styleSheet = document.createElement("style");
         styleSheet.id = "dark-theme-styles";
         styleSheet.type = "text/css";
-        document.head.appendChild(styleSheet);
+        document.body.appendChild(styleSheet);
       }
+
       styleSheet.innerText = darkThemeStyles;
     }
   } else {
@@ -76,12 +79,10 @@ const handleFullscreenChange = () => {
     document.msFullscreenElement;
 
   if (isFullscreen) {
-    console.log(1);
     document.querySelectorAll("video, iframe").forEach((el) => {
       el.style.filter = "none"; // Ensure correct styling for fullscreen elements
     });
   } else {
-    console.log(0);
     document.querySelectorAll("video, iframe").forEach((el) => {
       el.style.filter = "invert(1) hue-rotate(180deg)"; // Ensure correct styling for fullscreen elements
     });
