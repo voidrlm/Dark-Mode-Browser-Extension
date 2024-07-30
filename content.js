@@ -46,7 +46,7 @@ function setTheme(parameter) {
   .colordivbig, .colordvaline, .colordivb, .colordiv, .preview, path, .color,
   .hero-image, #document-container, .lazyloaded, .footer-navigation, .site-footer,
   .imgHolder, [style*=".jpg"], [style*=".jpeg"], [style*=".png"], [style*=".gif"],
-  img[src*=".jpg"], img[src*=".jpeg"], img[src*=".png"], img[src*=".gif"],.picker {
+  img[src*=".jpg"], img[src*=".jpeg"], img[src*=".png"], img[src*=".gif"],.picker,canvas,#samples {
     filter: invert(1) hue-rotate(180deg); 
   }
 `;
