@@ -29,9 +29,9 @@ function setTheme(parameter) {
     filter: invert(1) hue-rotate(180deg);
     background-color: #121212; 
   }
-  img, video, iframe, embed, .fa, .responsive-player, #navbar-main , #navFooter,.colordivbig,.colordvaline,.colordivb,
-  .colordiv,.preview ,path,.color,.hero-image,#document-container,.lazyloaded,.footer-navigation,.site-footer,.imgHolder,
-.module-content,figure {
+   video, iframe, embed, .fa, .responsive-player, #navbar-main , #navFooter,.colordivbig,.colordvaline,.colordivb,
+  .colordiv,.preview ,path,.color,.hero-image,#document-container,.lazyloaded,.footer-navigation,.site-footer,.imgHolder,[style*=".jpg"], [style*=".jpeg"], [style*=".png"], [style*=".gif"],
+      img[src*=".jpg"], img[src*=".jpeg"], img[src*=".png"], img[src*=".gif"] {
     filter: invert(1) hue-rotate(180deg); /* Restore original colors for specific elements */
   }
 `;
