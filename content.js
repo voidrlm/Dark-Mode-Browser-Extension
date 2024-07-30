@@ -128,6 +128,10 @@ function domainExcluded() {
     "apple",
     "coinmarketcap",
     "w3schools",
+    "geeksforgeeks",
+    "mozilla",
+    "stackoverflow",
+    "figma",
   ];
   return exclusionList.some((domainName) => domainName == hostname);
 }
