@@ -127,6 +127,7 @@ function domainExcluded() {
     "chatgpt",
     "apple",
     "coinmarketcap",
+    "w3schools",
   ];
   return exclusionList.some((domainName) => domainName == hostname);
 }
