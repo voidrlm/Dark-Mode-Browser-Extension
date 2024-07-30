@@ -6,9 +6,10 @@ chrome.runtime.onMessage.addListener(function (request) {
 });
 
 var intervalId;
+var isDomainExcluded = domainExcluded();
 var isDarkModeOn =
   JSON.parse(localStorage.getItem("darkModeService")) === true &&
-  !domainExcluded();
+  !isDomainExcluded;
 
 if (isDarkModeOn) {
   runService("start");
@@ -21,7 +22,6 @@ function setTheme(parameter) {
   const isPdf = currentUrl.toLowerCase().endsWith(".pdf");
   var darkMode = JSON.parse(localStorage.getItem("darkModeService"));
   var newDomain = JSON.parse(localStorage.getItem("darkModeService")) === null;
-  const isDomainExcluded = domainExcluded();
   if (parameter === "clicked") {
     darkMode = newDomain ? true : !darkMode;
     localStorage.setItem("darkModeService", darkMode);
