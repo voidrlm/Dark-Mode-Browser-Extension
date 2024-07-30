@@ -49,7 +49,6 @@ function setTheme(parameter) {
         styleSheet.type = "text/css";
         document.body.appendChild(styleSheet);
       }
-      console.log(styleSheet);
       styleSheet.innerText = darkThemeStyles;
     }
   } else {
