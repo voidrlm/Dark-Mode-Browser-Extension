@@ -110,6 +110,23 @@ function domainExcluded() {
   if (domainParts.length >= 2) {
     hostname = domainParts[1];
   }
-  var exclusionList = ["google"];
+  console.log(hostname);
+  var exclusionList = [
+    "google",
+    "youtube",
+    "x",
+    "reddit",
+    "facebook",
+    "instagram",
+    "canva",
+    "github",
+    "whatsapp",
+    "slack",
+    "trello",
+    "spotify",
+    "chatgpt",
+    "apple",
+    "coinmarketcap",
+  ];
   return exclusionList.some((domainName) => domainName == hostname);
 }
