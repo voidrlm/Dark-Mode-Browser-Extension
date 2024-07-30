@@ -12,6 +12,9 @@ if (isDarkModeOn) {
   runService("stop");
 }
 function setTheme(parameter) {
+  const currentUrl = window.location.href;
+  // Check if the URL ends with .pdf
+  const isPdf = currentUrl.toLowerCase().endsWith(".pdf");
   var darkMode = JSON.parse(localStorage.getItem("darkModeService"));
   var newDomain = JSON.parse(localStorage.getItem("darkModeService")) === null;
   if (parameter === "clicked") {
@@ -21,7 +24,7 @@ function setTheme(parameter) {
     else runService("stop");
   }
 
-  if (darkMode) {
+  if (!isPdf && darkMode) {
     if (document.body) {
       // Apply inversion filter to the entire page
       const darkThemeStyles = `
@@ -32,7 +35,7 @@ function setTheme(parameter) {
    video, iframe, embed, .fa, .responsive-player, #navbar-main , #navFooter,.colordivbig,.colordvaline,.colordivb,
   .colordiv,.preview ,path,.color,.hero-image,#document-container,.lazyloaded,.footer-navigation,.site-footer,.imgHolder,[style*=".jpg"], [style*=".jpeg"], [style*=".png"], [style*=".gif"],
       img[src*=".jpg"], img[src*=".jpeg"], img[src*=".png"], img[src*=".gif"] {
-    filter: invert(1) hue-rotate(180deg); /* Restore original colors for specific elements */
+    filter: invert(1) hue-rotate(180deg); 
   }
 `;
       document.addEventListener(
@@ -46,7 +49,7 @@ function setTheme(parameter) {
         styleSheet.type = "text/css";
         document.body.appendChild(styleSheet);
       }
-
+      console.log(styleSheet);
       styleSheet.innerText = darkThemeStyles;
     }
   } else {
