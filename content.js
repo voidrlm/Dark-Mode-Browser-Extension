@@ -4,8 +4,12 @@ chrome.runtime.onMessage.addListener(function (request) {
     setTheme("clicked");
   }
 });
+
 var intervalId;
-var isDarkModeOn = JSON.parse(localStorage.getItem("darkModeService")) === true;
+var isDarkModeOn =
+  JSON.parse(localStorage.getItem("darkModeService")) === true &&
+  !domainExcluded();
+
 if (isDarkModeOn) {
   runService("start");
 } else {
@@ -17,14 +21,20 @@ function setTheme(parameter) {
   const isPdf = currentUrl.toLowerCase().endsWith(".pdf");
   var darkMode = JSON.parse(localStorage.getItem("darkModeService"));
   var newDomain = JSON.parse(localStorage.getItem("darkModeService")) === null;
+  const isDomainExcluded = domainExcluded();
   if (parameter === "clicked") {
     darkMode = newDomain ? true : !darkMode;
     localStorage.setItem("darkModeService", darkMode);
-    if (darkMode) runService("start");
-    else runService("stop");
-  }
 
-  if (!isPdf && darkMode) {
+    if (darkMode && !isDomainExcluded) runService("start");
+    else runService("stop");
+    if (isDomainExcluded) {
+      alert(
+        "The website is either already set to the optimal configuration or has a dark theme option in-built."
+      );
+    }
+  }
+  if (!isPdf && darkMode && !isDomainExcluded) {
     if (document.body) {
       // Apply inversion filter to the entire page
       const darkThemeStyles = `
@@ -32,9 +42,11 @@ function setTheme(parameter) {
     filter: invert(1) hue-rotate(180deg);
     background-color: #121212; 
   }
-   video, iframe, embed, .fa, .responsive-player, #navbar-main , #navFooter,.colordivbig,.colordvaline,.colordivb,
-  .colordiv,.preview ,path,.color,.hero-image,#document-container,.lazyloaded,.footer-navigation,.site-footer,.imgHolder,[style*=".jpg"], [style*=".jpeg"], [style*=".png"], [style*=".gif"],
-      img[src*=".jpg"], img[src*=".jpeg"], img[src*=".png"], img[src*=".gif"] {
+  img, video, iframe, embed, .fa, .responsive-player, #navbar-main, #navFooter,
+  .colordivbig, .colordvaline, .colordivb, .colordiv, .preview, path, .color,
+  .hero-image, #document-container, .lazyloaded, .footer-navigation, .site-footer,
+  .imgHolder, [style*=".jpg"], [style*=".jpeg"], [style*=".png"], [style*=".gif"],
+  img[src*=".jpg"], img[src*=".jpeg"], img[src*=".png"], img[src*=".gif"] {
     filter: invert(1) hue-rotate(180deg); 
   }
 `;
@@ -90,3 +102,14 @@ const handleFullscreenChange = () => {
     });
   }
 };
+
+function domainExcluded() {
+  const currentUrl = window.location.href;
+  var hostname = new URL(currentUrl).hostname.toLowerCase();
+  const domainParts = hostname.split(".").reverse();
+  if (domainParts.length >= 2) {
+    hostname = domainParts[1];
+  }
+  var exclusionList = ["google"];
+  return exclusionList.some((domainName) => domainName == hostname);
+}
