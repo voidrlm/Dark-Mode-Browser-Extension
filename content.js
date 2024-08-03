@@ -36,20 +36,71 @@ function setTheme(parameter) {
   }
   if (!isPdf && darkMode && !isDomainExcluded) {
     if (document.body) {
-      // Apply inversion filter to the entire page
+      var elementsToIgnore = `
+      img,
+      svg,
+      video,
+      iframe,
+      embed,
+      article,
+      .fa,
+      .preview,
+      picture,
+      path,
+      nav,
+      footer,
+      [class*="footer"],
+      [class*="avatar"],
+      [style*="png"],
+      .redTxt,
+      .greenTxt,
+      .rdtxt,
+      .grntxt,
+      .advBar,
+      .slick-slider,
+      .arrow_class,
+      #navbar,
+      #navFooter,
+      #globalHeader,
+      .picker,
+      .imgHolder,
+      canvas,
+      .bg-light,
+      #main-banner-wrapper,
+      .priceChange,
+      .percent-change,
+      .sparkline-wrapper,
+      .market-up-down,
+      .positive,
+      .negative,
+      .index_val,
+      code
+    `;
       const darkThemeStyles = `
-  body {
-    filter: invert(1) hue-rotate(180deg);
-    background-color: #121212; 
-  }
-  img, video, iframe, embed, .fa, .responsive-player, #navbar-main, #navFooter,
-  .colordivbig, .colordvaline, .colordivb, .colordiv, .preview, path, .color,
-  .hero-image, #document-container, .lazyloaded, .footer-navigation, .site-footer,
-  .imgHolder, [style*=".jpg"], [style*=".jpeg"], [style*=".png"], [style*=".gif"],
-  img[src*=".jpg"], img[src*=".jpeg"], img[src*=".png"], img[src*=".gif"],.picker,canvas,#samples {
-    filter: invert(1) hue-rotate(180deg); 
-  }
-`;
+      body {
+        filter: invert(1);
+        background-color: #121212 !important;
+      }
+      .bg-light {
+        background-color: #121212 !important;
+        color: #FFFFFF;
+      }
+      ${elementsToIgnore} {
+        filter: invert(1);
+      }
+      nav, footer {
+        background: #121212;
+        background-color: #121212;
+        color: #FFFFFF;
+      }
+      code {
+        filter: none;
+      }
+      .feature,video,.market-up-down,.index_val,.fk-modal-visible {
+        filter: none;
+      }
+    `;
+
       document.addEventListener(
         "webkitfullscreenchange",
         handleFullscreenChange
