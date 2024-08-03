@@ -132,6 +132,19 @@ function domainExcluded() {
     "mozilla",
     "stackoverflow",
     "figma",
+    "tradingview",
+    "ndtv",
+    "sciencenews",
+    "usnews",
+    "chartjs",
+    "vuetifyjs",
+    "westerndigital",
+    "gopro",
+    "theverge",
+    "firstpost",
+    "anydesk",
+    "techspot",
+    "yahoo",
   ];
   return exclusionList.some((domainName) => domainName == hostname);
 }
