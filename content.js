@@ -96,8 +96,22 @@ function setTheme(parameter) {
       code {
         filter: none;
       }
-      .feature,video,.market-up-down,.index_val,.fk-modal-visible {
+      .market-up-down,.index_val,.fk-modal-visible {
         filter: none;
+      }
+      .fk-modal-visible [style*="background-image"]{ 
+      filter: invert(1);
+      }
+     .footer,footer,footer a,footer p,footer nav,.footer-bg{
+      filter: none !important;
+      background-color: #FFFFFF !important;
+      color: #121212 !important;
+      }
+      [id*="cover"]{
+      filter: none !important;
+      }
+      .feature{
+      filter: invert(1);
       }
     `;
 
