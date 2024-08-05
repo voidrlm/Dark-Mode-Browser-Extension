@@ -149,7 +149,7 @@ const handleFullscreenChange = () => {
     });
   } else {
     document.querySelectorAll("video, iframe").forEach((el) => {
-      el.style.filter = "invert(1) hue-rotate(180deg)"; // Ensure correct styling for fullscreen elements
+      el.style.filter = "invert(1)"; // Ensure correct styling for fullscreen elements
     });
   }
 };
