@@ -4,7 +4,8 @@ chrome.runtime.onMessage.addListener(function (request) {
     setTheme("clicked");
   }
 });
-
+var currentDomain = getDomain();
+var htmlBg;
 var intervalId;
 var isDomainExcluded = domainExcluded();
 var isDarkModeOn =
@@ -167,15 +168,19 @@ const handleFullscreenChange = () => {
     });
   }
 };
-
-function domainExcluded() {
+function getDomain() {
   const currentUrl = window.location.href;
   var hostname = new URL(currentUrl).hostname.toLowerCase();
   const domainParts = hostname.split(".").reverse();
   if (domainParts.length >= 2) {
     hostname = domainParts[1];
   }
-  console.log(hostname);
+  return hostname;
+}
+
+function domainExcluded() {
+  console.log(currentDomain);
+  currentDomain = getDomain();
   var exclusionList = [
     "google",
     "youtube",
@@ -210,6 +215,14 @@ function domainExcluded() {
     "anydesk",
     "techspot",
     "yahoo",
+    "hotstar",
+    "netflix",
+    "leetcode",
+    "jio",
+    "max",
+    "primevideo",
+    "hulu",
+    "twitch",
   ];
-  return exclusionList.some((domainName) => domainName == hostname);
+  return exclusionList.some((domainName) => domainName == currentDomain);
 }
