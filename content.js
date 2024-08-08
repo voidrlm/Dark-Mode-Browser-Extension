@@ -49,6 +49,7 @@ function setTheme(parameter) {
       embed,
       picture,
       path,
+      .button .avatar,
       .redTxt,
       .greenTxt,
       .rdtxt,
@@ -67,7 +68,9 @@ function setTheme(parameter) {
       .positive,
       .negative,
       .index_val,
-       code
+       code,
+       .vjs-poster,
+       .jw-preview
     `;
       const darkThemeStyles = `
   body {
@@ -93,7 +96,7 @@ function setTheme(parameter) {
     filter: none !important;
   }
 
-  .fk-modal-visible [style*="background-image"], picture {
+  .fk-modal-visible [style*="background-image"], picture,#video-js,.jw-media{
     filter: none !important;
   }
 
