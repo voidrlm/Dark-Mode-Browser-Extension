@@ -37,8 +37,12 @@ function setTheme(parameter) {
   }
   if (!isPdf && darkMode && !isDomainExcluded) {
     if (document.body) {
+      htmlBg = window.getComputedStyle(
+        document.documentElement
+      ).backgroundColor;
+      console.log(htmlBg);
       var elementsToIgnore = `
-      img,
+       img,
       svg,
       video,
       iframe,
