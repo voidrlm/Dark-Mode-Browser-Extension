@@ -47,16 +47,8 @@ function setTheme(parameter) {
       video,
       iframe,
       embed,
-      article,
-      .fa,
-      .preview,
       picture,
       path,
-      nav,
-      footer,
-      [class*="footer"],
-      [class*="avatar"],
-      [style*="png"],
       .redTxt,
       .greenTxt,
       .rdtxt,
@@ -64,14 +56,10 @@ function setTheme(parameter) {
       .advBar,
       .slick-slider,
       .arrow_class,
-      #navbar,
-      #navFooter,
-      #globalHeader,
       .picker,
       .imgHolder,
       canvas,
       .bg-light,
-      #main-banner-wrapper,
       .priceChange,
       .percent-change,
       .sparkline-wrapper,
@@ -79,46 +67,60 @@ function setTheme(parameter) {
       .positive,
       .negative,
       .index_val,
-      code
+       code
     `;
       const darkThemeStyles = `
-      body {
-        filter: invert(1);
-        background-color: #121212 !important;
-      }
-      .bg-light {
-        background-color: #121212 !important;
-        color: #FFFFFF;
-      }
-      ${elementsToIgnore} {
-        filter: invert(1);
-      }
-      nav, footer {
-        background: #121212;
-        background-color: #121212;
-        color: #FFFFFF;
-      }
-      code {
-        filter: none;
-      }
-      .market-up-down,.index_val,.fk-modal-visible {
-        filter: none;
-      }
-      .fk-modal-visible [style*="background-image"]{ 
-      filter: invert(1);
-      }
-     .footer,footer,footer a,footer p,footer nav,.footer-bg{
-      filter: none !important;
-      background-color: #FFFFFF !important;
-      color: #121212 !important;
-      }
-      [id*="cover"]{
-      filter: none !important;
-      }
-      .feature{
-      filter: invert(1);
-      }
-    `;
+  body {
+    filter: invert(1);
+    background-color: #121212 !important;
+    background: #121212 !important;
+  }
+
+  .bg-light {
+    background-color: #121212 !important;
+    color: #FFFFFF;
+  }
+
+  ${elementsToIgnore} {
+    filter: invert(1) !important;
+  }
+
+  code {
+    filter: none !important;
+  }
+
+  .market-up-down, .index_val, .fk-modal-visible, .facets-modal-popup {
+    filter: none !important;
+  }
+
+  .fk-modal-visible [style*="background-image"], picture {
+    filter: none !important;
+  }
+
+  .footer, footer, footer a, footer p, footer nav, .footer-bg, #c_copyright, .footer--details, .ftr-body, .ftr-cont {
+    filter: none !important;
+    background-color: #FFFFFF !important;
+    color: #121212 !important;
+  }
+
+  [id*="cover"] {
+    filter: none !important;
+  }
+
+  .feature {
+    filter: invert(1) !important;
+  }
+
+  .plp-view, #app {
+    background-color: #ffff !important;
+  }
+
+  ${
+    htmlBg === "rgba(0, 0, 0, 0)"
+      ? ""
+      : "html { filter: none !important; background-color: #121212 !important; }"
+  }
+`;
 
       document.addEventListener(
         "webkitfullscreenchange",
