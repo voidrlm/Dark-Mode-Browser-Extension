@@ -160,7 +160,7 @@ const handleFullscreenChange = () => {
 
   if (isFullscreen) {
     document.querySelectorAll("video, iframe").forEach((el) => {
-      el.style.filter = "none"; // Ensure correct styling for fullscreen elements
+      el.style.setProperty("filter", "none", "important"); // Ensure correct styling for fullscreen elements
     });
   } else {
     document.querySelectorAll("video, iframe").forEach((el) => {
